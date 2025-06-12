@@ -15,14 +15,15 @@ export function validateEnvironmentVariables() {
   const anthropicApiKey = process.env.ANTHROPIC_API_KEY;
 
   // Debug logging
-  console.log("Debug: Environment variables:");
-  console.log("  CLAUDE_CODE_USE_OAUTH:", process.env.CLAUDE_CODE_USE_OAUTH);
-  console.log("  CLAUDE_CODE_USE_BEDROCK:", process.env.CLAUDE_CODE_USE_BEDROCK);
-  console.log("  CLAUDE_CODE_USE_VERTEX:", process.env.CLAUDE_CODE_USE_VERTEX);
-  console.log("  useOAuth:", useOAuth);
-  console.log("  CLAUDE_ACCESS_TOKEN:", process.env.CLAUDE_ACCESS_TOKEN ? "SET" : "NOT SET");
-  console.log("  CLAUDE_REFRESH_TOKEN:", process.env.CLAUDE_REFRESH_TOKEN ? "SET" : "NOT SET");
-  console.log("  CLAUDE_EXPIRES_AT:", process.env.CLAUDE_EXPIRES_AT);
+  console.error("Debug: Environment variables:");
+  console.error("  CLAUDE_CODE_USE_OAUTH:", process.env.CLAUDE_CODE_USE_OAUTH);
+  console.error("  CLAUDE_CODE_USE_BEDROCK:", process.env.CLAUDE_CODE_USE_BEDROCK);
+  console.error("  CLAUDE_CODE_USE_VERTEX:", process.env.CLAUDE_CODE_USE_VERTEX);
+  console.error("  useOAuth:", useOAuth);
+  console.error("  CLAUDE_ACCESS_TOKEN:", process.env.CLAUDE_ACCESS_TOKEN ? "SET" : "NOT SET");
+  console.error("  CLAUDE_REFRESH_TOKEN:", process.env.CLAUDE_REFRESH_TOKEN ? "SET" : "NOT SET");
+  console.error("  CLAUDE_EXPIRES_AT:", process.env.CLAUDE_EXPIRES_AT);
+  console.error("  ANTHROPIC_API_KEY:", process.env.ANTHROPIC_API_KEY ? "SET" : "NOT SET");
 
   const errors: string[] = [];
 
