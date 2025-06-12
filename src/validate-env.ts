@@ -5,8 +5,24 @@
 export function validateEnvironmentVariables() {
   const useBedrock = process.env.CLAUDE_CODE_USE_BEDROCK === "1";
   const useVertex = process.env.CLAUDE_CODE_USE_VERTEX === "1";
-  const useOAuth = process.env.CLAUDE_CODE_USE_OAUTH === "1";
+  
+  // More flexible OAuth detection - check both the flag and the presence of OAuth tokens
+  const useOAuth = process.env.CLAUDE_CODE_USE_OAUTH === "1" || 
+    (process.env.CLAUDE_ACCESS_TOKEN && 
+     process.env.CLAUDE_REFRESH_TOKEN && 
+     process.env.CLAUDE_EXPIRES_AT);
+  
   const anthropicApiKey = process.env.ANTHROPIC_API_KEY;
+
+  // Debug logging
+  console.log("Debug: Environment variables:");
+  console.log("  CLAUDE_CODE_USE_OAUTH:", process.env.CLAUDE_CODE_USE_OAUTH);
+  console.log("  CLAUDE_CODE_USE_BEDROCK:", process.env.CLAUDE_CODE_USE_BEDROCK);
+  console.log("  CLAUDE_CODE_USE_VERTEX:", process.env.CLAUDE_CODE_USE_VERTEX);
+  console.log("  useOAuth:", useOAuth);
+  console.log("  CLAUDE_ACCESS_TOKEN:", process.env.CLAUDE_ACCESS_TOKEN ? "SET" : "NOT SET");
+  console.log("  CLAUDE_REFRESH_TOKEN:", process.env.CLAUDE_REFRESH_TOKEN ? "SET" : "NOT SET");
+  console.log("  CLAUDE_EXPIRES_AT:", process.env.CLAUDE_EXPIRES_AT);
 
   const errors: string[] = [];
 

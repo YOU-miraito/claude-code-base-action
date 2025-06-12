@@ -11,7 +11,13 @@ async function run() {
     validateEnvironmentVariables();
 
     // Setup OAuth credentials if using OAuth authentication
-    if (process.env.CLAUDE_CODE_USE_OAUTH === "1") {
+    // Use the same flexible detection as in validate-env.ts
+    const useOAuth = process.env.CLAUDE_CODE_USE_OAUTH === "1" || 
+      (process.env.CLAUDE_ACCESS_TOKEN && 
+       process.env.CLAUDE_REFRESH_TOKEN && 
+       process.env.CLAUDE_EXPIRES_AT);
+    
+    if (useOAuth) {
       await setupOAuthCredentials({
         accessToken: process.env.CLAUDE_ACCESS_TOKEN!,
         refreshToken: process.env.CLAUDE_REFRESH_TOKEN!,
