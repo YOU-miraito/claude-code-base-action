@@ -3,6 +3,13 @@
  * based on the selected provider (Anthropic API, AWS Bedrock, or Google Vertex AI)
  */
 export function validateEnvironmentVariables() {
+  console.log("DEBUG - Environment variables:");
+  console.log("  CLAUDE_CODE_USE_OAUTH:", process.env.CLAUDE_CODE_USE_OAUTH);
+  console.log("  CLAUDE_CODE_USE_BEDROCK:", process.env.CLAUDE_CODE_USE_BEDROCK);
+  console.log("  CLAUDE_CODE_USE_VERTEX:", process.env.CLAUDE_CODE_USE_VERTEX);
+  console.log("  CLAUDE_ACCESS_TOKEN:", process.env.CLAUDE_ACCESS_TOKEN ? "SET" : "NOT SET");
+  console.log("  ANTHROPIC_API_KEY:", process.env.ANTHROPIC_API_KEY ? "SET" : "NOT SET");
+  
   const useBedrock = process.env.CLAUDE_CODE_USE_BEDROCK === "1";
   const useVertex = process.env.CLAUDE_CODE_USE_VERTEX === "1";
   
@@ -13,6 +20,11 @@ export function validateEnvironmentVariables() {
      process.env.CLAUDE_EXPIRES_AT);
   
   const anthropicApiKey = process.env.ANTHROPIC_API_KEY;
+  
+  console.log("DEBUG - Computed flags:");
+  console.log("  useBedrock:", useBedrock);
+  console.log("  useVertex:", useVertex);
+  console.log("  useOAuth:", useOAuth);
 
   // Debug logging
   console.error("Debug: Environment variables:");
